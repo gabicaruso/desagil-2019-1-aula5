@@ -1,51 +1,29 @@
 package br.edu.insper.al.algumaluno.aula5;
 
-public class Politician {
-    private boolean corrupt;
-    private String name;
+public class Politician extends Citizen{
     private double salary;
     private int networking;
 
-    public Politician(boolean corrupt, String name, double salary) {
-        this.corrupt = corrupt;
-        this.name = name;
+    public Politician(String name, double salary) {
+        super(name);
         this.salary = salary;
         this.networking = 0;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getNetworking() {
-        return networking;
-    }
-
-    public void setNetworking(int networking) {
-        this.networking = networking;
+    public void addNetworking(int networking) {
+        this.networking += networking;
     }
 
     public double getIncome() {
         double factor = 1.0 + 0.1 * networking;
-        if (corrupt) {
-            return 2 * factor * salary;
-        }
         return factor * salary;
     }
 
-    public void saluteCitizen(Citizen citizen) {
-        if (corrupt) {
-            System.out.println("Saudações, senhor " + citizen.getName() + ", tenha um ótimo dia!");
-        } else {
-            System.out.println("E aí, " + citizen.getName() + ", firmeza?");
-        }
+    public void salute(Citizen citizen) {
+        System.out.println("E aí, " + citizen.getName() + ", firmeza?");
     }
 
-    public void salutePolitician(Politician politician) {
-        if (corrupt) {
-            System.out.println("Honrado em encontrá-lo, Vossa Excelência " + politician.getName() + ", como posso ajudar?");
-        } else {
-            System.out.println("Olá, " + politician.getName() + ", tudo bem?");
-        }
+    public void salute(Politician politician) {
+        System.out.println("Olá, " + politician.getName() + ", tudo bem?");
     }
 }
